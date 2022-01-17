@@ -1,8 +1,3 @@
-//
-// This is only a SKELETON file for the 'Minesweeper' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 // export (add this back in once you're done using the browser console)
 
 const annotate = (inputArray) => {
@@ -23,6 +18,12 @@ const annotate = (inputArray) => {
 
     //loop through each inputString in the inputArray
     for (let j = 0; j < inputString.length; j++) {
+      //these return as undefined if they do not exist
+      let stringPrevious = inputArray[i - 1];
+      console.log("stringPrevious:", stringPrevious);
+      console.log("stringFollowing:", inputArray[i + 1]);
+      let stringFollowing = inputArray[i + 1];
+      console.log("stringFollowing:", inputArray[i + 1]);
       //add IFs for edge cases here?
       //create a variable for the space you are working in
       let currentSpace = 0;
@@ -32,18 +33,25 @@ const annotate = (inputArray) => {
         currentSpace = "*";
         console.log("currentSpace asterisk:", currentSpace);
       } else {
+        //inputArray[i].string[j-1, j+1]
         // if ((inputString[j - 1] = !null)) { (not sure we need this?)
         if (inputString[j - 1] === "*") {
           currentSpace++;
           console.log("currentSpace increment:", currentSpace);
         }
         // }
-
-        //inputArray[i].inputString[j] check if these are asterisks:
-
-        //if each of these things EXISTS, do a thing (nest some ifs? would that take care of edges?)
-        //inputArray[i].string[j-1, j+1]
+        if (inputString[j + 1] === "*") {
+          currentSpace++;
+          console.log("currentSpace increment:", currentSpace);
+        }
         //inputArray[i-1].string[j, j+1, j-1]
+        if ((stringPrevious = !undefined)) {
+          if (stringPrevious.charAt[j] === "*") {
+            currentSpace++;
+            console.log("currentSpace increment:", currentSpace);
+          }
+        } //end stringPrevious if
+
         //inputArray[i+1].string[j, j+1, j-1]
 
         //IF the space we are checking against is an asterisk, currentSpace ++
