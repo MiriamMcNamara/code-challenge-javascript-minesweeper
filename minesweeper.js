@@ -17,10 +17,7 @@ const annotate = (inputArray) => {
     //loop through each inputString in the inputArray
     for (let j = 0; j < inputString.length; j++) {
       //is this the first item and the last item? (single string?)
-      if (
-        inputArray[i] === inputArray[0] &&
-        inputArray[inputArray.length - 1]
-      ) {
+      if (inputArray[0] === inputArray[inputArray.length - 1]) {
         //create a variable for the space you are working in
         let currentSpace = 0;
         console.log("currentSpace:", currentSpace);
@@ -199,4 +196,4 @@ const annotate = (inputArray) => {
   //return the returnArray
 };
 
-annotate(["*  ", " * "]);
+annotate(["*  ", " * ", "***"]);
