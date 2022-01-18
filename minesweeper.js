@@ -60,8 +60,7 @@ const annotate = (inputArray) => {
           currentSpace = "*";
           console.log("currentSpace asterisk:", currentSpace);
         } else {
-          //first, check inputArray[i].string[j-1, j+1] (characters on either side, same string)
-          // if ((inputString[j - 1] = !null)) { (not sure we need this?)
+          //check against same string and string following it
           if (inputString[j - 1] === "*") {
             currentSpace++;
             console.log("currentSpace increment:", currentSpace);
@@ -87,11 +86,10 @@ const annotate = (inputArray) => {
         if (currentSpace === 0) {
           returnString = returnString + " ";
         } else {
-          //concatenate currentSpace onto returnString (might need to toString?), move to next spot
+          //concatenate currentSpace onto returnString
           returnString = returnString + currentSpace;
         }
         console.log("returnString:", returnString);
-        //once all the currentSpaces have been checked in each string, push the returnString into the returnArray
       } //END LOGIC FOR FIRST STRING
       //is this the last item in the array?
       else if (inputArray[i] === inputArray[inputArray.length - 1]) {
@@ -105,8 +103,7 @@ const annotate = (inputArray) => {
           currentSpace = "*";
           console.log("currentSpace asterisk:", currentSpace);
         } else {
-          //first, check inputArray[i].string[j-1, j+1] (characters on either side, same string)
-          // if ((inputString[j - 1] = !null)) { (not sure we need this?)
+          //check same string and string previous
           if (inputString[j - 1] === "*") {
             currentSpace++;
             console.log("currentSpace increment:", currentSpace);
@@ -132,13 +129,12 @@ const annotate = (inputArray) => {
         if (currentSpace === 0) {
           returnString = returnString + " ";
         } else {
-          //concatenate currentSpace onto returnString (might need to toString?), move to next spot
+          //concatenate currentSpace onto returnString
           returnString = returnString + currentSpace;
         }
         console.log("returnString:", returnString);
-        //once all the currentSpaces have been checked in each string, push the returnString into the returnArray
       } //END LOGIC FOR LAST STRING
-      //otherwise, do it all
+      //otherwise, check same string, string previous and string following
       else {
         let stringPrevious = inputArray[i - 1];
         console.log("stringPrevious:", stringPrevious);
@@ -152,8 +148,7 @@ const annotate = (inputArray) => {
           currentSpace = "*";
           console.log("currentSpace asterisk:", currentSpace);
         } else {
-          //first, check inputArray[i].string[j-1, j+1] (characters on either side, same string)
-          // if ((inputString[j - 1] = !null)) { (not sure we need this?)
+          //check em all
           if (inputString[j - 1] === "*") {
             currentSpace++;
             console.log("currentSpace increment:", currentSpace);
@@ -191,13 +186,13 @@ const annotate = (inputArray) => {
         if (currentSpace === 0) {
           returnString = returnString + " ";
         } else {
-          //concatenate currentSpace onto returnString (might need to toString?), move to next spot
+          //concatenate currentSpace onto returnString
           returnString = returnString + currentSpace;
         }
         console.log("returnString:", returnString);
-        //once all the currentSpaces have been checked in each string, push the returnString into the returnArray
       } //END LOGIC FOR ALL MIDDLE STRINGS
     } //end j loop
+    //once all the currentSpaces have been checked in each string, push the returnString into the returnArray
     returnArray.push(returnString);
   } //end i loop
   console.log("returnArray:", returnArray);
