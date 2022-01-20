@@ -1,199 +1,155 @@
-// export (add this back in once you're done using the browser console)
+export const annotate = (inputArray) => {
+  //handle empty array/no rows
+  if (inputArray.length === 0) {
+    return inputArray;
+  }
 
-const annotate = (inputArray) => {
-  console.log("inputArray:", inputArray);
-
-  //create an array to return, returnArray
+  //handle empty string/no columns
+  if (inputArray[0] === "") {
+    return inputArray;
+  }
+  //create an array to return
   let returnArray = [];
+
   //loop through the inputArray
   for (let i = 0; i < inputArray.length; i++) {
-    //declare variable for the inputString
+    //declare variable for the strings from the inputArray
     let inputString = inputArray[i];
-    console.log("inputString:", inputString);
 
-    //create a variable for the returnString
+    //declare a variable for the string you will be returning
     let returnString = "";
 
-    //loop through each inputString in the inputArray
+    //loop through the input string
     for (let j = 0; j < inputString.length; j++) {
-      //is this the first item and the last item? (single string?)
-      if (inputArray[0] === inputArray[inputArray.length - 1]) {
-        //create a variable for the space you are working in
+      //is this a single string?
+      if (inputArray.length === 1) {
+        //declare a variable for the space you are working in
         let currentSpace = 0;
-        console.log("currentSpace:", currentSpace);
         //first check iF the character you are at is an asterisk, then currentSpace="*"
         if (inputString[j] === "*") {
           currentSpace = "*";
-          console.log("currentSpace asterisk:", currentSpace);
         } else {
           //check characters on either side
           if (inputString[j - 1] === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
-          // }
           if (inputString[j + 1] === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
         }
+        //if the space hasn't incremented, concatenate a whitespace onto the returnString
         if (currentSpace === 0) {
           returnString = returnString + " ";
+          //otherwise, concatenate the currentSpace onto the returnString
         } else {
-          //concatenate currentSpace onto returnString, move to next spot in the string
           returnString = returnString + currentSpace;
         }
-        console.log("returnString:", returnString);
       } //END LOGIC FOR SINGLE STRING
-      //is this the first item in the array?
-      else if (inputArray[i] === inputArray[0]) {
+      //is this the FIRST string in the array?
+      else if (i === 0) {
+        //declare a variable for the following string in the inputArray
         let stringFollowing = inputArray[i + 1];
-        console.log("stringFollowing:", stringFollowing);
-        //create a variable for the space you are working in
         let currentSpace = 0;
-        console.log("currentSpace:", currentSpace);
-        //first check iF the character you are at is an asterisk, then currentSpace="*"
         if (inputString[j] === "*") {
           currentSpace = "*";
-          console.log("currentSpace asterisk:", currentSpace);
         } else {
           //check against same string and string following it
           if (inputString[j - 1] === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
-          // }
           if (inputString[j + 1] === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringFollowing.charAt(j) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringFollowing.charAt(j - 1) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringFollowing.charAt(j + 1) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
         }
         if (currentSpace === 0) {
           returnString = returnString + " ";
         } else {
-          //concatenate currentSpace onto returnString
           returnString = returnString + currentSpace;
         }
-        console.log("returnString:", returnString);
       } //END LOGIC FOR FIRST STRING
-      //is this the last item in the array?
-      else if (inputArray[i] === inputArray[inputArray.length - 1]) {
+      //is this the LAST string in the array?
+      else if (i === inputArray.length - 1) {
+        //declare a variable for the previous string in the inputArray
         let stringPrevious = inputArray[i - 1];
-        console.log("stringPrevious:", stringPrevious);
-        //create a variable for the space you are working in
         let currentSpace = 0;
-        console.log("currentSpace:", currentSpace);
-        //first check iF the character you are at is an asterisk, then currentSpace="*"
         if (inputString[j] === "*") {
           currentSpace = "*";
-          console.log("currentSpace asterisk:", currentSpace);
         } else {
           //check same string and string previous
           if (inputString[j - 1] === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
-          // }
           if (inputString[j + 1] === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringPrevious.charAt(j) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringPrevious.charAt(j - 1) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringPrevious.charAt(j + 1) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
         }
         if (currentSpace === 0) {
           returnString = returnString + " ";
         } else {
-          //concatenate currentSpace onto returnString
           returnString = returnString + currentSpace;
         }
-        console.log("returnString:", returnString);
       } //END LOGIC FOR LAST STRING
-      //otherwise, check same string, string previous and string following
+      //for all other rows, check same string, the string previous and the string following
       else {
         let stringPrevious = inputArray[i - 1];
-        console.log("stringPrevious:", stringPrevious);
         let stringFollowing = inputArray[i + 1];
-        console.log("stringFollowing:", stringFollowing);
-        //create a variable for the space you are working in
         let currentSpace = 0;
-        console.log("currentSpace:", currentSpace);
-        //first check iF the character you are at is an asterisk, then currentSpace="*"
         if (inputString[j] === "*") {
           currentSpace = "*";
-          console.log("currentSpace asterisk:", currentSpace);
         } else {
-          //check em all
           if (inputString[j - 1] === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
-          // }
           if (inputString[j + 1] === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringPrevious.charAt(j) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringPrevious.charAt(j - 1) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringPrevious.charAt(j + 1) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringFollowing.charAt(j) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringFollowing.charAt(j - 1) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
           if (stringFollowing.charAt(j + 1) === "*") {
             currentSpace++;
-            console.log("currentSpace increment:", currentSpace);
           }
         }
         if (currentSpace === 0) {
           returnString = returnString + " ";
         } else {
-          //concatenate currentSpace onto returnString
           returnString = returnString + currentSpace;
         }
-        console.log("returnString:", returnString);
       } //END LOGIC FOR ALL MIDDLE STRINGS
     } //end j loop
     //once all the currentSpaces have been checked in each string, push the returnString into the returnArray
     returnArray.push(returnString);
   } //end i loop
-  console.log("returnArray:", returnArray);
   //return the returnArray
+  return returnArray;
 };
-
-annotate(["*  ", " * ", "***"]);
